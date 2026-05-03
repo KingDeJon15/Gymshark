@@ -1,0 +1,24 @@
+<div class="main-product page-width">
+  <h1 class="main-product__title">{{ product.title }}</h1>
+  {% if product.featured_image %}
+    {% assign featured_alt = product.featured_image.alt | default: product.title %}
+    <div class="main-product__media">
+      {{
+        product.featured_image
+        | image_url: width: 1200
+        | image_tag: loading: 'lazy', alt: featured_alt
+      }}
+    </div>
+  {% endif %}
+  <div class="main-product__description rte">{{ product.description }}</div>
+</div>
+
+{% schema %}
+{
+  "name": "Product",
+  "tag": "section",
+  "class": "section-main-product",
+  "settings": [],
+  "presets": [{ "name": "Product" }]
+}
+{% endschema %}
